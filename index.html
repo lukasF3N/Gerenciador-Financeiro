@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gerenciador Financeiro Pessoal</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Gerenciador Financeiro Pessoal</h1>
+  </header>
+
+  <main class="container">
+    <section class="dashboard card">
+      <div>
+        <h2>Saldo</h2>
+        <p id="saldo">R$ 0,00</p>
+      </div>
+      <div>
+        <h3>Receitas</h3>
+        <p id="receitas">R$ 0,00</p>
+      </div>
+      <div>
+        <h3>Despesas</h3>
+        <p id="despesas">R$ 0,00</p>
+      </div>
+    </section>
+
+    <section class="card form-section">
+      <h2>Nova / Editar Transação</h2>
+      <form id="txForm">
+        <input type="hidden" id="txId">
+        <label>Descrição
+          <input id="descricao" required>
+        </label>
+        <label>Valor (R$)
+          <input id="valor" type="number" step="0.01" min="0.01" required>
+        </label>
+        <label>Tipo
+          <select id="tipo">
+            <option value="Receita">Receita</option>
+            <option value="Despesa">Despesa</option>
+          </select>
+        </label>
+        <label>Data
+          <input id="data" type="date" required>
+        </label>
+        <label>Categoria
+          <input id="categoria" list="catsList">
+          <datalist id="catsList"></datalist>
+        </label>
+        <div class="form-actions">
+          <button type="submit" id="saveBtn">Salvar</button>
+          <button type="button" id="cancelEdit" class="secondary">Cancelar</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card list-section">
+      <div class="list-top">
+        <div>
+          <label>Filtrar mês (AAAA-MM)
+            <input id="monthFilter" placeholder="2025-10">
+          </label>
+          <button id="applyFilter" class="small">Aplicar</button>
+          <button id="clearFilter" class="small secondary">Limpar</button>
+        </div>
+        <div>
+          <button id="exportCsv" class="small">Exportar CSV</button>
+          <button id="clearAll" class="small danger">Limpar Tudo</button>
+        </div>
+      </div>
+
+      <table id="txTable">
+        <thead>
+          <tr>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Tipo</th>
+            <th>Data</th>
+            <th>Categoria</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <small>Feito para projeto SENAI — salva no browser (localStorage)</small>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
